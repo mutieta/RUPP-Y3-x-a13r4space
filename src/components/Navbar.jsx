@@ -12,7 +12,7 @@ const Navbar = () => {
 
   // Function to handle navigation to the subscribe page
   const handleProfileClick = () => {
-    navigate("/subscribe");
+    navigate("/AuthenticatorSignUp");
   };
 
   // Navigate to LandingPage when Home is clicked
@@ -131,8 +131,9 @@ const Navbar = () => {
       {/* Search Overlay */}
       {isSearchOpen && (
         <div className="bg-black absolute top-0 left-0 w-full h-full text-white p-6 z-50">
-          <div className="flex justify-between items-center mb-6">
-            <input
+          <div className="flex justify-between items-center mb-6 ">   
+            <input    
+                     
               type="text"
               placeholder="Search the universe"
               className="w-full px-4 py-2 bg-black text-white border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400"
@@ -164,6 +165,7 @@ const Navbar = () => {
                   <div className="flex items-center space-x-2">
                     <FiSearch className="text-gray-500" />
                     <span>{item}</span>
+              
                   </div>
                 </li>
               ))}

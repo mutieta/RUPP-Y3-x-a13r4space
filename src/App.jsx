@@ -9,7 +9,8 @@ import ApodDetail from './components/ApodDetail';
 import Apod from './components/Apod';
 import SpaceXmission from './components/SpaceXmission';
 import MissionSummarize from './components/MissionSummarize';
-
+import AuthenticatorLogin from './components/AuthenticatorLogin';
+import AuthenticatorSignUp from './components/AuthenticatorSignUp';
 
 function App() {
   return (
@@ -25,7 +26,9 @@ function App() {
           <Route path="/ApodDetail" element={<ApodDetail/> } />
           <Route path="/Apod" element ={<Apod/>} />
           <Route path="/SpaceXmission" element={<SpaceXmission/>}  />
-          <Route path="/MissionSummarize/:id" element={<MissionSummarize/>} />  
+          <Route path="/MissionSummarize/:id" element={<MissionSummarize/>} /> 
+          <Route path="/AuthenticatorSignUp" element={<AuthenticatorSignUp/>} />
+          <Route path="/AuthenticatorLogin" element={<AuthenticatorLogin/>} />
           <Route path="*" element={<div>404 - Page Not Found</div>} />
         </Routes>
       </div>
