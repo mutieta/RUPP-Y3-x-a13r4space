@@ -1,12 +1,16 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaEnvelope, FaLock, FaUser } from "react-icons/fa";
+import axios from "axios";
+
+const API_BASE_URL = "http://localhost:8000/api"; // Adjust if necessary
 
 const AuthenticatorSignUp = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [error, setError] = useState(null);
 
   const navigate = useNavigate();
 
@@ -14,15 +18,29 @@ const AuthenticatorSignUp = () => {
     navigate("/AuthenticatorLogin");
   };
 
-  const handleSignUp = (e) => {
+  const handleSignUp = async (e) => {
     e.preventDefault();
 
     if (password !== confirmPassword) {
-      alert("Passwords do not match!");
+      setError("Passwords do not match!");
       return;
     }
 
-    console.log("Signing up with:", { name, email, password });
+    try {
+      const response = await axios.post(`${API_BASE_URL}/signup`, {
+        name,
+        email,
+        password,
+      });
+
+      console.log("Signup successful:", response.data);
+
+      // Redirect to login page after successful signup
+      navigate("/login");
+    } catch (err) {
+      console.error("Signup error:", err.response?.data || err.message);
+      setError(err.response?.data?.message || "Signup failed. Please try again.");
+    }
   };
 
   return (
@@ -91,6 +109,9 @@ const AuthenticatorSignUp = () => {
             />
           </div>
 
+          {/* Error Message */}
+          {error && <p className="text-red-500 text-sm">{error}</p>}
+
           {/* Signup Button */}
           <button
             type="submit"
@@ -99,7 +120,7 @@ const AuthenticatorSignUp = () => {
             Sign Up
           </button>
 
-          {/* Signup Button With Google */}
+          {/* Google Signup */}
           <button
             type="button"
             className="w-full bg-gray-200 hover:bg-gray-300 text-black py-2 rounded-lg text-lg font-semibold flex items-center justify-center gap-2 transition"

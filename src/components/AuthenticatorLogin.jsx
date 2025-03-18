@@ -1,22 +1,43 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaEnvelope, FaLock } from "react-icons/fa";
+import axios from "axios";
+
+const API_BASE_URL = "http://localhost:8000/api"; // Adjust if necessary
 
 const AuthenticatorLogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
+  const [error, setError] = useState(null);
 
   const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    console.log("Logging in with:", { email, password, rememberMe });
-    // Add authentication logic here
+    setError(null); // Clear any previous errors
+
+    try {
+      const response = await axios.post(`${API_BASE_URL}/login`, {
+        email,
+        password,
+      });
+
+      console.log("Login successful:", response.data);
+
+      // Store token in localStorage (or cookies if needed)
+      localStorage.setItem("token", response.data.token);
+
+      // Redirect user to the dashboard or another protected page
+      navigate("/dashboard");
+    } catch (err) {
+      console.error("Login error:", err.response?.data || err.message);
+      setError(err.response?.data?.message || "Login failed. Please try again.");
+    }
   };
 
   const handleForgotPasswordClick = () => {
-    navigate("/forgot-password"); // Adjust the route as needed
+    navigate("/forgot-password");
   };
 
   return (
@@ -59,7 +80,10 @@ const AuthenticatorLogin = () => {
             />
           </div>
 
-          {/* Remember Me & Forgot Password (Same Line) */}
+          {/* Error Message */}
+          {error && <p className="text-red-500 text-sm">{error}</p>}
+
+          {/* Remember Me & Forgot Password */}
           <div className="flex justify-between items-center text-gray-400 text-sm">
             <label className="flex items-center">
               <input
@@ -70,27 +94,18 @@ const AuthenticatorLogin = () => {
               />
               Remember Me
             </label>
-            <button
-              onClick={handleForgotPasswordClick}
-              className="hover:underline"
-            >
+            <button onClick={handleForgotPasswordClick} className="hover:underline">
               Forgot Password?
             </button>
           </div>
 
           {/* Login Button */}
-          <button
-            type="submit"
-            className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg text-lg font-semibold transition"
-          >
+          <button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg text-lg font-semibold transition">
             Login
           </button>
 
           {/* Login with Google */}
-          <button
-            type="button"
-            className="w-full bg-gray-200 hover:bg-gray-300 text-black py-2 rounded-lg text-lg font-semibold flex items-center justify-center gap-2 transition"
-          >
+          <button type="button" className="w-full bg-gray-200 hover:bg-gray-300 text-black py-2 rounded-lg text-lg font-semibold flex items-center justify-center gap-2 transition">
             <img src="/image/google.png" alt="Google Logo" className="w-5 h-5" />
             Login with Google
           </button>

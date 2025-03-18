@@ -11,6 +11,7 @@ import SpaceXmission from './components/SpaceXmission';
 import MissionSummarize from './components/MissionSummarize';
 import AuthenticatorLogin from './components/AuthenticatorLogin';
 import AuthenticatorSignUp from './components/AuthenticatorSignUp';
+import ExploreNav from './components/ExploreNav';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path="/PeopleOfNasa" element={<PeopleOfNasa />} />
           <Route path="/ApodDetail" element={<ApodDetail/> } />
           <Route path="/Apod" element ={<Apod/>} />
+          <Route path="/ExploreNav" element ={<ExploreNav/>} />
           <Route path="/SpaceXmission" element={<SpaceXmission/>}  />
           <Route path="/MissionSummarize/:id" element={<MissionSummarize/>} /> 
           <Route path="/AuthenticatorSignUp" element={<AuthenticatorSignUp/>} />
