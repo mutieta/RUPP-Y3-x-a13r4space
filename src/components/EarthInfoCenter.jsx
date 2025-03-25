@@ -3,7 +3,7 @@ import React from 'react';
 
 const EarthInfoCenter = () => {
   return (
-    <div className="relative bg-black text-white min-h-screen">
+    <div id='earthinfo-section' className="relative bg-black text-white min-h-screen">
       <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url('/image/northern-lights-in-iceland-when-amp-where-to-see-the-aurora-11.jpg')" }}>
         {/* Background image for the black-and-white Earth theme */}
       </div>

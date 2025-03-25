@@ -11,7 +11,7 @@ const Science = () => {
   ];
 
   return (
-    <div className="bg-white py-12 px-8">
+    <div id="science-section" className="bg-white py-12 px-8">
       {/* Header Section */}
       <div className="flex items-center justify-between mb-6">
         <h2 className="text-4xl font-bold text-gray-800">Science</h2>

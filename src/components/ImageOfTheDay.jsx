@@ -52,7 +52,7 @@ const ImageOfTheDay = () => {
   }
 
   return (
-    <div className="flex flex-col lg:flex-row bg-white overflow-hidden px-8 py-12 relative">
+    <div id="apod-section" className="flex flex-col lg:flex-row bg-white overflow-hidden px-8 py-12 relative">
       {/* Text Section */}
       <div className="flex flex-col justify-center lg:w-1/2 relative lg:pr-8">
         <p className="text-xs uppercase text-gray-400 tracking-wide absolute top-0 left-0 z-10 mb-0">Today</p>

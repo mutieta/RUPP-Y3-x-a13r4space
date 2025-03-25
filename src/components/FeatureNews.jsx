@@ -77,7 +77,7 @@ function FeatureNews() {
   ];
 
   return (
-    <section className="px-8 py-12 bg-white">
+    <section id="news-section" className="px-8 py-12 bg-white">
       <div className="max-w-7xl mx-auto">
         {/* Header with title and "More News" link */}
         <div className="flex items-center justify-between mb-6">

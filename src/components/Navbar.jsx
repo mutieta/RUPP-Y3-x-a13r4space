@@ -4,6 +4,7 @@ import { HiOutlineArrowCircleDown, HiOutlineArrowCircleUp } from "react-icons/hi
 import { FiChevronDown, FiSearch } from "react-icons/fi";
 import { FaRegUserCircle } from "react-icons/fa";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
+import { permafrost, Buckle_up, skynews_nasa } from "/src/Asset/image";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -21,45 +22,37 @@ const Navbar = () => {
   const toggleExplore = () => setIsExploreOpen(!isExploreOpen);
   const toggleMultimedia = () => setIsMultimediaOpen(!isMultimediaOpen);
 
-  // Navigation items
   const navItems = [
-    { name: "Home", path: "/" },
-    { name: "Missions", path: "/missions" },
-    { name: "Humans in Space", path: "/humans-in-space" },
-    { name: "Earth", path: "/earth" },
-    { name: "The Solar System", path: "/solar-system" },
-    { name: "The Universe", path: "/universe" },
-    { name: "Science", path: "/science" },
-    { name: "Aeronautics", path: "/aeronautics" },
-    { name: "Technology", path: "/technology" },
-    { name: "Learning Resources", path: "/learning-resources" },
-    { name: "About NASA", path: "/about" },
-    { name: "Español", path: "/espanol" }
-  ];
+    { name: "Home", type: "route", path: "/" },
+    { name: "APOD", type: "route", path: "/Apod" },
+    { name: "Mission", type: "route", path: "/SpaceXmission" },
+    { name: "Astronauts", type: "route", path: "/PeopleOfNasa" },
+    { name: "Skywatching", type: "route", path: "/Asteroids" },
+    { name: "ភាសាខ្មែរ", type: "route", path: "/khmer" }
+];
 
-  // Featured articles
   const featuredArticles = [
-    { 
-      img: "/moon-landing.jpg", 
-      title: "NASA Cameras on Blue Ghost Capture First-of-its-Kind Moon Landing Footage", 
-      time: "4 MIN READ",
-      days: "4 DAYS AGO",
-      type: "ARTICLE"
+      {
+        type: "ARTICLE",
+        time: "6 MIN READ",
+        title:
+          "Why NASA's SPHEREx Mission Will Make 'Most Colorful' Cosmic Map Ever",
+        image: skynews_nasa,
+      },
+      {
+        type: "ARTICLE",
+        time: "3 MIN READ",
+        title:
+          "Buckle Up: NASA-Funded Study Explores Turbulence in Molecular Clouds",
+        image: Buckle_up,
+      },
+       {
+        type: "ARTICLE",
+        time: "4 MIN READ",
+        title:
+         "NASA Helps Find Thawing Permafrost Adds to Near-Term Global Warming",
+        image: permafrost,
     },
-    { 
-      img: "/wave-mission.jpg", 
-      title: "NASA Atmospheric Wave-Studying Mission Releases Data from First 3,000 Orbits", 
-      time: "4 MIN READ",
-      days: "2 DAYS AGO",
-      type: "ARTICLE"
-    },
-    { 
-      img: "/skywatch.jpg", 
-      title: "What's Up: March 2025 Skywatching Tips from NASA", 
-      time: "5 MIN READ",
-      days: "2 WEEKS AGO",
-      type: "ARTICLE"
-    }
   ];
 
   return (
@@ -104,14 +97,14 @@ const Navbar = () => {
               {/* Featured Section */}
               <div className="flex-1 p-6">
                 <h2 className="text-gray-400 text-sm font-bold mb-4 ">FEATURED</h2>
-                <div className="grid grid-cols-3 gap-6 mr-4">
+                <div className="grid grid-cols-3 gap-6 mr-12">
                   {featuredArticles.map((article, index) => (
                     <div key={index} className="cursor-pointer">
                       <div className="bg-gray-800 overflow-hidden">
                         <img 
                           src={article.img} 
                           alt={article.title} 
-                          className="w-full h-48 object-cover" 
+                          className="w-full h-80 object-cover" 
                         />
                       </div>
                       <p className="text-gray-400 text-xs mt-2">{article.time}</p>
@@ -140,25 +133,6 @@ const Navbar = () => {
 
       {/* Right Section */}
       <div className="flex items-center space-x-4">
-        {/* Multimedia Dropdown (Desktop) */}
-        <div className="relative hidden lg:block">
-          <button 
-            className="flex items-center space-x-2 px-4 py-2 text-white hover:text-gray-300 focus:outline-none"
-            onClick={toggleMultimedia}
-          >
-            <span>Multimedia</span>
-            <FiChevronDown />
-          </button>
-          {isMultimediaOpen && (
-            <div className="absolute right-0 mt-2 w-48 bg-white text-black rounded-md shadow-lg z-50">
-              <ul>
-                <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">Photos</li>
-                <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">Videos</li>
-                <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">Audio</li>
-              </ul>
-            </div>
-          )}
-        </div>
 
         {/* Search Icon (Mobile) */}
         <FiSearch

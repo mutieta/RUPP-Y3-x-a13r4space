@@ -5,7 +5,7 @@ const ImageNasa = () => {
   const [galleries, setGalleries] = useState({
     space: [],
     galaxy: [],
-    landscape: [],
+    cosmos: [],
   });
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -23,12 +23,12 @@ const ImageNasa = () => {
         // Manually categorize images (simulate categories)
         const space = response.data.slice(0, 10); // First 10 images for 'People'
         const galaxy = response.data.slice(10, 20); // Next 10 images for 'Galaxy'
-        const landscape = response.data.slice(20, 30); // Last 10 images for 'Landscape'
+        const cosmos = response.data.slice(20, 30); // Last 10 images for 'Cosmos'
 
         setGalleries({
           space,
           galaxy,
-          landscape,
+          cosmos,
         });
       } catch (err) {
         setError('Failed to fetch images. Please try again later.');
@@ -76,7 +76,7 @@ const ImageNasa = () => {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {renderGalleryCard(galleries.space, 'Space')}
         {renderGalleryCard(galleries.galaxy, 'Galaxy')}
-        {renderGalleryCard(galleries.landscape, 'Landscape')}
+        {renderGalleryCard(galleries.cosmos, 'Cosmos')}
       </div>
     </div>
   );

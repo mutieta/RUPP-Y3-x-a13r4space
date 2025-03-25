@@ -76,7 +76,7 @@ const Apod = () => {
         className="text-white min-h-screen flex flex-col items-center justify-center"
         style={{
           fontFamily: "'Inter', sans-serif",
-          backgroundImage: "url('/src/Asset/galaxy_background.jpg')",
+          backgroundImage: "url('/src/Asset/Buckle_Up.jpg')",
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
