@@ -1,12 +1,28 @@
-import React from 'react';
-// import Footer from './Footer'; // Footer component for the page footer
-// import MoreNews from './MoreNews'; // MoreNews component for additional news items
+import React, { useState } from "react";
 import { LiaLinkedinIn } from "react-icons/lia";
 import { TiSocialFacebook } from "react-icons/ti";
 import { RiTwitterXLine } from "react-icons/ri";
 import { TbClover } from "react-icons/tb";
 
 function NewsPage() {
+  const [likes, setLikes] = useState(0); // State for likes
+  const [comment, setComment] = useState(""); // State for the comment input
+  const [comments, setComments] = useState([]); // State for the list of comments
+
+  // Handle like button click
+  const handleLike = () => {
+    setLikes(likes + 1);
+  };
+
+  // Handle comment submission
+  const handleCommentSubmit = (e) => {
+    e.preventDefault();
+    if (comment.trim()) {
+      setComments([...comments, comment]);
+      setComment(""); // Clear the input field
+    }
+  };
+
   return (
     <div className="bg-white">
       <div className="max-w-4xl mx-auto p-20 bg-white flex flex-col lg:flex-row">
@@ -75,7 +91,7 @@ function NewsPage() {
             <div className="my-6">
               <img
                 className="w-full"
-                src="./image/acs.jpg" // Updated path
+                src="./image/acs.jpg" // Ensure the correct path
                 alt="Solar Sail with Composite Booms"
                 loading="lazy"
               />
@@ -84,6 +100,43 @@ function NewsPage() {
                 Advanced Composite Solar Sail System’s mechanical test fixture inside Building N239 at
                 NASA’s Ames Research Center.
               </p>
+            </div>
+
+            {/* Like Button */}
+            <div className="my-6">
+              <button
+                onClick={handleLike}
+                className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
+              >
+                👍 Like ({likes})
+              </button>
+            </div>
+
+            {/* Comment Section */}
+            <div className="my-6">
+              <h3 className="text-lg font-semibold mb-2">Leave a Comment</h3>
+              <form onSubmit={handleCommentSubmit} className="flex flex-col space-y-2">
+                <textarea
+                  value={comment}
+                  onChange={(e) => setComment(e.target.value)}
+                  className="border p-2 rounded w-full"
+                  rows="3"
+                  placeholder="Write your thoughts..."
+                ></textarea>
+                <button
+                  type="submit"
+                  className="self-start bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
+                >
+                  Submit
+                </button>
+              </form>
+              <div className="mt-4 space-y-2">
+                {comments.map((c, i) => (
+                  <div key={i} className="bg-gray-100 p-2 rounded">
+                    {c}
+                  </div>
+                ))}
+              </div>
             </div>
           </article>
         </main>
